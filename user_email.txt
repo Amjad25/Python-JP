@@ -1,0 +1,19 @@
+Hi *user*!
+
+We've found the best article for you based on your interest: *title*
+Please click *here* to open the article
+
+Hi Amjad!
+
+We've found the best article for you based on your interest: WonderEarth
+Please click wikipedia/wonder to open the article
+
+Hi Amjad!
+
+We've found the best article for you based on your interest: sdsd
+Please click sdsd to open the article
+
+Hi Ali!
+
+We've found the best article for you based on your interest: dsd
+Please click fff to open the article
