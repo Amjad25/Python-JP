@@ -84,6 +84,15 @@ def format_datetime(datetime_str):
 
 print(format_datetime("07/06/2024 20:02:20"))
 
+# Write a program that calculates the time difference between two given datetime objects and displays it in hours, minutes, and seconds.
+
+def difference_bw_two_datetime(datetime1:datetime, datetime2:datetime):
+    difference_date :timedelta =datetime1.__sub__(datetime2)
+    print("datetime1" ,datetime1)
+    print("datetime2" ,datetime2)
+    print("difference_date", difference_date)
+
+difference_bw_two_datetime(datetime1=datetime(2024,7,19,15,0,0),datetime2=datetime.now())
 
 
 
