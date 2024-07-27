@@ -22,19 +22,31 @@ all items have 20% discount by default
 """
 
 class Item:
+    __price = 0
     def __init__(self, name, price, quantity):
         self.name = name
-        self.price = price
+        self.__price = price
         self.quantity = quantity
         
+
+    # getter method
+    @property
+    def price(self):
+        return self.__price
+    
+    # setter method
+    @price.setter
+    def salary(self, amount):
+        self.__price = amount
+
     def calculate_total_price(self):
-        return self.price * self.quantity
+        return self.__price * self.quantity
         
     def apply_discount(self):
-        self.price = self.price * 0.8
+        self.__price = self.price * 0.8
         
     def all_items(self):
-        return f"Name: {self.name}\nPrice: {self.price}\nQuantity: {self.quantity}"
+        return f"Name: {self.name}\nPrice: {self.__price}\nQuantity: {self.quantity}"
     
 items = [
     Item("Phone", 100, 1),
@@ -52,6 +64,8 @@ for item in items:
 
 # Problem 2:
 # extend the above application restrict updating the price directly i.e item.price = 100
+
+item[0].se = 100
 
 """
 Problem 3:
