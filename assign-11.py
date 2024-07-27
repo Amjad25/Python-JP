@@ -65,7 +65,7 @@ for item in items:
 # Problem 2:
 # extend the above application restrict updating the price directly i.e item.price = 100
 
-item[0].se = 100
+item[0].__price = 100
 
 """
 Problem 3:
