@@ -39,17 +39,9 @@ def get_employees_in_specific_departments(db_conn: pymysql.Connection):
   cur = db_conn.cursor()
   cur.execute(
     """
-    SELECT employee_id, first_name, last_name
-    FROM employees
-    WHERE department_id IN (
-      SELECT department_id
-      FROM departments
-      WHERE location_id IN (
-        SELECT location_id
-        FROM locations
-        WHERE city LIKE 'S%'
-      )
-    )
+    select employee_id, first_name,last_name from employees where department_id in 
+    (select department_id from departments where location_id in 
+    (select location_id from locations where city like 'S%'))
     """
   )
   return cur.fetchall()
@@ -79,11 +71,10 @@ def emp_and_mgr_details(db_conn: pymysql.Connection):
     cur = db_conn.cursor()
     cur.execute(
         """
-        SELECT e.employee_id, e.first_name, e.last_name, e.manager_id, m.first_name as manager_fname, m.last_name as manager_lname
-        FROM employees e
-        JOIN employees m
-        ON e.manager_id = m.employee_id
-        
+        select e.employee_id, e.first_name, e.last_name, e.manager_id, m.first_name as manager_fname, m.last_name as manager_lname
+        from employees e
+        join employees m
+        on e.manager_id = m.employee_id
         """
     )
     return cur.fetchall()
