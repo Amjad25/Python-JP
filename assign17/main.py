@@ -5,6 +5,21 @@ from flask import Flask, jsonify, request
 app:Flask = Flask(__name__)
 books:Book = []
 
+users=[
+    {
+        'name': 'user1',
+        'email': 'user1@gmail.com',
+        'pw': 'pass1'
+    },
+    {
+        'name': 'user2',
+        'email': 'user2@gmail.com',
+        'pw': 'pass2'
+    },
+
+]
+
+
 @app.route("/")
 def allBooksInitial():
     return books
@@ -57,6 +72,26 @@ def deleteBook(id):
             books.remove(book)
             return "Book deleted"
     return "Book not found"
+
+
+@app.route("/users", methods=["GET"])
+def getUsers():
+    return jsonify(users)
+
+@app.route("/login", methods=["POST"])
+def login():
+    data = request.json
+    for user in users:
+        if user['email'] == data['email'] and user['pw'] == data['pw']:
+            return "Login Success"
+    return "Login Failed"
+
+@app.route("/signup", methods=["POST"])
+def signup():
+    data = request.json
+    users.append(data)
+    return "User added"
+
 
 
 app.run(
