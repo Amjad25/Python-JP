@@ -23,7 +23,9 @@ class ProductSerializer(serializers.Serializer):
     price = serializers.DecimalField(required=True, max_digits=10, decimal_places=2)
     quantity = serializers.IntegerField(required=True)
     category_id = serializers.IntegerField(required=True)
-    suppliers = serializers.ListField(child=serializers.IntegerField(), required=True)
+    suppliers = serializers.ListField(child=serializers.IntegerField(), required=True,write_only=True)
+
+
 
 
 

@@ -24,7 +24,7 @@ def authors(request:Request):
         else:
             return Response(serializer.errors , status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['GET' , 'PUT','DELETE'])
+@api_view(['GET' , 'PUT','DELETE']) 
 def author(request:Request , id:int):
     try:
         author = Author.objects.get(id=id)
