@@ -1,0 +1,14 @@
+Functions based views
+
+Class Based Views
+    APIView
+    Generics
+        - CreateAPIView
+        - List APIView
+
+    Viewset
+        - ModelViewSet
+        - Read Only ModalViewSet
+
+
+        
