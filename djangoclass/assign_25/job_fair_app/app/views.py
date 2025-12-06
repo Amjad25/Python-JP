@@ -7,6 +7,9 @@ from .models import JobPost, Application ,Employer
 from .serializers import EmployerSerializer, JobPostSerializer, ApplicationSerializer, UserSignupSerializer ,UserLoginSerializer,EmployerRegistrationSerializer,JobSeekerRegistrationSerializer
 from .permissions import IsAdminUser, IsEmployerUser, IsJobSeekerUser
 from rest_framework_simplejwt.tokens import RefreshToken
+from drf_yasg.utils import swagger_auto_schema
+from django.contrib.auth import authenticate
+
 
 @api_view(['POST'])
 def employer_signup(request):
@@ -37,15 +40,24 @@ def signup(request):
         }, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+@swagger_auto_schema(method="post", request_body=UserLoginSerializer)
+
 @api_view(['POST'])
 def login(request):
-    
-    serializer = UserLoginSerializer(data=request.data)
+    data = request.data 
+    serializer = UserLoginSerializer(data=data)
     if serializer.is_valid():
-        user = serializer.validated_data['user']
+        user = serializer.validated_data
+        print("data Intial",data)
+        print("user Intial",user)
+        user = authenticate(
+            request, username=data["username"], password=data["password"]
+        )        
+        print("After authentication ",user)
         refresh = RefreshToken.for_user(user)
         return Response({
-            'refresh': str(refresh0),
+            'refresh': str(refresh),
             'access': str(refresh.access_token),
         }, status=status.HTTP_200_OK)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -54,7 +66,7 @@ def login(request):
 class EmployerViewSet(viewsets.ModelViewSet):
     serializer_class = EmployerSerializer
     queryset = Employer.objects.all()
-    permission_classes = []
+    permission_classes = [IsAuthenticated]
 
 
 

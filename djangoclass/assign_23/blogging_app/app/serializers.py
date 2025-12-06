@@ -9,7 +9,7 @@ class UserSerializer(serializers.ModelSerializer):
     is_moderator = serializers.BooleanField(read_only=True)
     is_active = serializers.BooleanField(read_only=True)
     is_staff = serializers.BooleanField(read_only=True)
-    is_admin = serializers.BooleanField(read_only=True)x
+    is_admin = serializers.BooleanField(read_only=True)
 
     class Meta:
         model = User
